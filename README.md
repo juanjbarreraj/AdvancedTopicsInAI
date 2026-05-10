@@ -1,1 +1,1 @@
-# AdvancedAIClass
+# AdvancedTopicsInAI
