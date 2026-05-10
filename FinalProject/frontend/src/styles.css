@@ -1,0 +1,723 @@
+h1 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 28px;
+}
+
+.panel-card {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.map-panel {
+  flex: 3;
+  padding: 20px;
+  background: white;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+}
+
+.info-panel {
+  flex: 1;
+  padding: 20px;
+  background: #fafafa;
+  overflow-y: auto;
+}
+
+.campus-map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border: 2px solid #333;
+  border-radius: 14px;
+  background-image: url("/campus-map.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.location-node {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  color: transparent;
+  border: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+
+  display: block;
+  font-size: 0;
+  box-shadow: none;
+}
+
+.agent-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.55);
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.agent-dot:hover {
+  transform: translate(-50%, -50%) scale(1.6);
+  z-index: 30;
+}
+
+.agent-dot.selected {
+  outline: 3px solid black;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9), 0 0 12px rgba(0, 0, 0, 0.7);
+  z-index: 40;
+}
+
+.agent-athlete {
+  background: #ff5a5f;
+}
+
+.agent-copa {
+  background: #3a9aca;
+}
+
+.agent-regular {
+  background: #62bfa1;
+}
+
+.panel-card {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+}
+
+.question-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.ask-button {
+  width: 100%;
+  padding: 10px;
+  background: #3a9aca;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.ask-button:hover {
+  opacity: 0.9;
+}
+
+.answer-box {
+  margin-top: 15px;
+  padding: 12px;
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+  min-height: 80px;
+  border-radius: 8px;
+}
+
+.clock-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.clock-display {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.clock-button {
+  padding: 10px 16px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.clock-button:hover {
+  opacity: 0.9;
+}
+
+.slot-select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: black;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.legend-name {
+  font-size: 14px;
+}
+
+.panel-help-text {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+  margin-top: -4px;
+  margin-bottom: 12px;
+}
+
+.example-question-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.example-question-button {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  background: #f8f8f8;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+}
+
+.example-question-button:hover:not(:disabled) {
+  background: #eef7fb;
+  border-color: #3a9aca;
+}
+
+.example-question-button:disabled,
+.ask-button:disabled,
+.question-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.machine-answer-box {
+  background: #111;
+  color: #f5f5f5;
+  border: 1px solid #333;
+}
+
+.machine-response {
+  margin-top: 12px;
+}
+
+.typing-text {
+  margin-top: 8px;
+  padding: 12px;
+  min-height: 80px;
+  background: #050505;
+  border: 1px solid #333;
+  border-radius: 8px;
+  line-height: 1.5;
+  font-family: "Courier New", monospace;
+  white-space: pre-wrap;
+}
+
+.typing-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.8s infinite;
+  font-weight: bold;
+}
+
+.machine-thinking {
+  font-family: "Courier New", monospace;
+  color: #62bfa1;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.ai-evidence-box {
+  margin-top: 14px;
+  padding: 12px;
+  background: #1b1b1b;
+  border: 1px solid #444;
+  border-radius: 10px;
+  color: #e8e8e8;
+  font-size: 13px;
+}
+
+.ai-evidence-box h4 {
+  margin: 0 0 10px 0;
+  color: #62bfa1;
+}
+
+.attention-section,
+.word-representation-section,
+.pipeline-section {
+  margin-top: 12px;
+}
+
+.attention-token-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.attention-token {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 8px;
+  background: #050505;
+  border: 1px solid #333;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+}
+
+.attention-token-word {
+  color: #ffffff;
+}
+
+.attention-token-weight {
+  color: #62bfa1;
+}
+
+.neighbor-row {
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.neighbor-word {
+  display: inline-block;
+  min-width: 85px;
+  color: #62bfa1;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.neighbor-list {
+  color: #f5f5f5;
+}
+
+.pipeline-section ol {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+.pipeline-section li {
+  margin-bottom: 6px;
+}
+
+.ai-status-list {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0;
+  font-size: 14px;
+  color: #222;
+}
+
+.details-button {
+  width: 100%;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #111;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.details-button:hover {
+  opacity: 0.9;
+}
+
+.ai-status-details {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f6f6f6;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.campus-reasoning-box {
+  margin-top: 14px;
+  padding: 12px;
+  background: #101820;
+  border: 1px solid #35506b;
+  border-radius: 10px;
+  color: #f2f6fa;
+  font-size: 13px;
+}
+
+.campus-reasoning-box h4 {
+  margin: 0 0 12px 0;
+  color: #f6b23b;
+}
+
+.reasoning-card {
+  padding: 10px;
+  margin-top: 10px;
+  background: #162331;
+  border: 1px solid #2d4358;
+  border-radius: 8px;
+}
+
+.reasoning-card h5 {
+  margin: 0 0 8px 0;
+  color: #62bfa1;
+  font-size: 14px;
+}
+
+.reasoning-card p {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.reasoning-card ul {
+  margin: 8px 0 0 0;
+  padding-left: 18px;
+}
+
+.reasoning-card li {
+  margin-bottom: 5px;
+}
+
+.utility-list {
+  margin-top: 8px;
+  display: grid;
+  gap: 6px;
+}
+
+.utility-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  background: #0c141d;
+  border: 1px solid #263b50;
+  border-radius: 6px;
+  font-family: "Courier New", monospace;
+}
+
+.reasoning-intro {
+  margin: 0 0 12px 0;
+  color: #d7e8f6;
+  line-height: 1.4;
+  font-size: 13px;
+}
+
+
+.time-click-button {
+  border: none;
+  background: transparent;
+  color: #111;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.time-edit-input {
+  width: 110px;
+  padding: 5px 8px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.rebel-agents-panel {
+  margin-top: 18px;
+  padding: 16px;
+  background: #fffaf0;
+  border: 1px solid #e4b756;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.rebel-agents-panel h2 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  color: #4a3100;
+}
+
+.rebel-agents-panel p {
+  margin: 0;
+  color: #5c4a22;
+  font-size: 14px;
+}
+
+.rebel-agent-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.rebel-agent-item {
+  padding: 10px 12px;
+  background: white;
+  border: 1px solid #e8cf92;
+  border-left: 5px solid #d08b00;
+  border-radius: 10px;
+  display: grid;
+  gap: 4px;
+}
+
+.rebel-agent-item strong {
+  font-size: 14px;
+  color: #111;
+}
+
+.rebel-agent-item span {
+  font-size: 13px;
+  color: #5c4a22;
+  line-height: 1.35;
+}
+
+
+/* ============================================================
+   Conversation / Miss-Class Decision Boxes
+   Used inside QuestionPanel.jsx for follow-up conversation state.
+   ============================================================ */
+
+.conversation-state-box {
+  margin: 10px 0;
+  padding: 10px;
+  background: #fff7df;
+  border: 1px solid #e1b84f;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #3d2b00;
+  line-height: 1.4;
+}
+
+.decision-followup-box {
+  margin-top: 14px;
+  padding: 12px;
+  background: #241521;
+  border: 1px solid #74456c;
+  border-radius: 10px;
+  color: #f7edf5;
+  font-size: 13px;
+}
+
+.decision-followup-box h4 {
+  margin: 0 0 10px 0;
+  color: #f6b23b;
+}
+
+.decision-followup-box p {
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+
+/* ============================================================
+   Agent Status / Academic Consequence Styling
+   Useful for AgentInfoPanel.jsx once it displays expected vs actual.
+   ============================================================ */
+
+.agent-status-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.agent-status-row {
+  padding: 8px 10px;
+  background: #f7f7f7;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.agent-status-row strong {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-badge-normal {
+  background: #e7f7ef;
+  color: #0f6840;
+  border: 1px solid #9ed9bb;
+}
+
+.status-badge-rebel {
+  background: #fff1d6;
+  color: #7a4400;
+  border: 1px solid #e2ad4c;
+}
+
+.rebel-reason-box {
+  margin-top: 10px;
+  padding: 10px;
+  background: #fffaf0;
+  border: 1px solid #e8cf92;
+  border-radius: 8px;
+  color: #4a3100;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.academic-metrics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  background: #f6f6f6;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.metric-value {
+  font-weight: bold;
+}
+
+
+/* ============================================================
+   Small Layout Improvement
+   Makes the right panel more readable with the larger AI sections.
+   ============================================================ */
+
+.map-panel {
+  flex: 2;
+}
+
+.info-panel {
+  flex: 1.15;
+  min-width: 430px;
+  max-width: 540px;
+}
+
+
+/* ============================================================
+   Responsive Layout
+   Keeps the project usable on smaller screens.
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .map-panel {
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .info-panel {
+    max-width: none;
+    min-width: 0;
+  }
+
+  .rebel-agent-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rebel-agent-item {
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.rebel-agent-item:hover {
+  background: #fff7df;
+  transform: translateY(-1px);
+}
+
+.rebel-agent-item-selected {
+  border-left-color: #111;
+  border-color: #111;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.12);
+}
+
