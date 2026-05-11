@@ -634,3 +634,20 @@
       min-height: 500px;
     }
   }
+
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  
+  .github-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    transition: transform 0.2s ease;
+  }
+  
+  .github-link:hover .github-icon {
+    transform: translateY(-1px) scale(1.08);
+  }
