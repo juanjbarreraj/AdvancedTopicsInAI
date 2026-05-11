@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 14 | Campus AI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;650;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="page-header">
+    <div class="container">
+      <a class="breadcrumb" href="index.html">← Back to Main Index</a>
+
+      <section class="week-hero">
+        <div class="week-number">HW14</div>
+        <h1>Week 14</h1>
+        <p>
+          Folder path: <strong>Hw14/</strong>. HTML reports open inside the viewer. Non-HTML files are provided as direct download links.
+        </p>
+
+        <div class="nav-row">
+          <a class="button" href="week13.html">← Previous Week</a>
+          <a class="button primary" href="index.html">All Weeks</a>
+          <span class="button" style="opacity:.45; pointer-events:none;">Next Week →</span>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main class="container content-layout">
+    <aside class="file-panel">
+      <div class="panel-title">
+        <span>Files</span>
+        <span class="pill">2 total</span>
+      </div>
+      <div class="file-list">
+        
+          <button class="file-link" data-file="Hw14/Module7Assignment(PartB).html" data-name="Module7Assignment(PartB).html">
+            <span class="file-icon">html</span>
+            <span>
+              <span class="file-name">Module7Assignment(PartB).html</span>
+              <span class="file-action">Open HTML report in viewer</span>
+            </span>
+          </button>
+
+          <a class="file-link" href="Hw14/Module7Assignment(PartB).ipynb" download>
+            <span class="file-icon">ipynb</span>
+            <span>
+              <span class="file-name">Module7Assignment(PartB).ipynb</span>
+              <span class="file-action">Download file</span>
+            </span>
+          </a>
+      </div>
+    </aside>
+
+    <section class="viewer-panel">
+      <div class="viewer-toolbar">
+        <div class="viewer-title" id="viewerTitle">Module7Assignment(PartB).html</div>
+        <a class="button" id="openNewTab" href="Hw14/Module7Assignment(PartB).html" target="_blank" rel="noopener" >Open in New Tab</a>
+      </div>
+      
+          <iframe class="viewer-frame" id="viewerFrame" src="Hw14/Module7Assignment(PartB).html" title="Module7Assignment(PartB).html"></iframe>
+    
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">Campus AI Final Project Portfolio</div>
+  </footer>
+
+  <script>
+    const viewerFrame = document.getElementById("viewerFrame");
+    const viewerTitle = document.getElementById("viewerTitle");
+    const openNewTab = document.getElementById("openNewTab");
+
+    document.querySelectorAll("[data-file]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const file = button.getAttribute("data-file");
+        const name = button.getAttribute("data-name");
+        if (viewerFrame) {
+          viewerFrame.src = file;
+          viewerFrame.title = name;
+        }
+        viewerTitle.textContent = name;
+        openNewTab.href = file;
+        openNewTab.style.display = "inline-flex";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+  </script>
+</body>
+</html>
