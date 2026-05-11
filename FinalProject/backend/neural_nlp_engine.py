@@ -49,7 +49,6 @@ UNK_TOKEN = "<unk>"
 def normalize_text(text: str) -> str:
     text = text.lower().strip()
 
-    # Remove punctuation but keep colon because time values like 09:40 need it.
     text = re.sub(r"[^\w\s:]", "", text)
 
     text = re.sub(r"\s+", " ", text)
